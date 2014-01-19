@@ -3,40 +3,25 @@
 /**
  * This controller routes all incoming requests to the appropriate controller and page
  */
-//echo "bhangi";
-$request= $_SERVER['QUERY_STRING'];//url mein jo value hogi usko show kr dega
-//print_r($request);
-//echo '<br>';
 
-$parsed= explode('?', $request);//url mein jo ? ke bd ki vlue hgi usko show kr dega
-//print_r($parsed);
-//echo '<br>';
+$request= $_SERVER['QUERY_STRING'];
 
-$parsed= explode('=', $parsed['0']);//ab jo $parsed mein value aayi hai wo array ki frmt mein aayi hai to jo $parsed ['0'] mein jo value hai usmein = ke bd wali value ko show krega...
-//print_r($parsed);
-//echo '<br>';
-//echo $parsed['0'].'000000';
+$parsed= explode('?', $request);
+
+$parsed= explode('=', $parsed['0']);
 $query1= $parsed['0'];
 
 $getParsed=explode('&',$parsed['1']);
-//print_r($getParsed);
-//echo '<br>';
 
 $query2=$getParsed[1];
 
-//print_r($query2). 'hey';
 
-//echo"hbhjgbyhujgbgbj";
 $query1ans= $getParsed['0'];
-//echo $query1ans;
 
 $query2ans=$parsed['2'];
-//print_r($query2ans);
-//print_r($parsed);
 
 
 /* directory that contain classes */
-//echo SERVER_ROOT;
 
 $classesDir= array( SERVER_ROOT.'/protected/library/' );
 
