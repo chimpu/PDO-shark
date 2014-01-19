@@ -1,4 +1,4 @@
-PDO-shark ( Works only for PHP version > PHP 5.4 )
+PDO-shark ( Works only for PHP version > 5.4 )
 =========
 
 Advanced chimpu framework with enhanced and easier pdo class and form validations
