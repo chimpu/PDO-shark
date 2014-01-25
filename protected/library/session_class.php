@@ -67,7 +67,6 @@ elseif($_SESSION['nonce']!==md5(microtime(true)))
 	    }
 	    else
 	        return false;
-
 	}
 
 
