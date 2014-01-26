@@ -6,6 +6,7 @@ class session extends links
 	{
 		//session_start();
 
+
 		 $token=hash("sha512",$_SERVER['HTTP_ACCEPT_LANGUAGE'].$email.SITE_URL);
 		 $_SESSION['token']=$token;
 		 $_SESSION['email']=$email;
@@ -13,7 +14,7 @@ class session extends links
 		 $_SESSION['logip']=$_SERVER['REMOTE_ADDR'];
 		 $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
 		 $_SESSION['EXPIRES'] = time()+600;// 600/60=10 min inactivity logout
-		 $_SESSION['CURRENT']=0;
+		 $_SESSION['CURRENT']=time();
 		 return $_SESSION;
 	}
 
@@ -49,7 +50,7 @@ elseif($_SESSION['nonce']!==md5(microtime(true)))
     return false;
 }
 
-		        elseif(($_SESSION['EXPIRES']-$_SESSION['CURRENT'])=='0')
+		        elseif($_SESSION['EXPIRES']<=$_SESSION['CURRENT'])
 		        {
 
 		            return false;
@@ -67,17 +68,17 @@ elseif($_SESSION['nonce']!==md5(microtime(true)))
 	    }
 	    else
 	        return false;
+
 	}
 
 
 	public function destroy($page,$panel=NULL)
 	{
-		unset($_SESSION);
+		unset($_SESSION['token']);
 		session_unset();
 		session_destroy();
 		if(empty($_SESSION))
 		self::redirect($page,$panel);
-
 		else
 			echo "There is a problem";
 	}
